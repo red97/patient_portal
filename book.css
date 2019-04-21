@@ -1,0 +1,68 @@
+body{
+  
+  margin: 0;
+  padding: 0;
+  background-image: url("pink_dust.png");
+  background-repeat: repeat;
+  font-family: sans-serif;
+  height: 100vh;
+  font-family: 'Oxygen', sans-serif;
+  color: #fff !important;
+} 
+{
+  margin: 0 !important;
+}
+.main{
+ }
+
+.title { 
+	font-size: 50px;
+	font-family: 'Passion One', cursive; 
+	font-weight: 400; 
+  color: #fff;
+  top: 50%;
+  left: 24.8%;
+}
+
+hr{
+	width: 10%;
+	color: #000;
+}
+
+.form-group{
+	margin-bottom: 15px;
+}
+
+label{
+	margin-bottom: 15px;
+}
+
+
+input::-webkit-input-placeholder {
+  font-size: 13px;
+  padding-top: 3px;
+}
+
+.main-login{
+  background-color: #000;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+.main-center{
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 40px 40px;
+}
+
+.login-button{
+	margin-top: 15px;
+	}
+.message {
+  color: #fff;
+  text-shadow: 1px 1px 2px red;
+  padding-left: 50px;
+  font-weight: bold;
+}
