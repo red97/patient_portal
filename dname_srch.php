@@ -1,11 +1,10 @@
 <?php
-include("patfunc.php");
+session_start();
 $con=mysqli_connect("127.0.0.1","root","","hmsdb");
-if(isset($_POST['search_submit']))
+if(isset($_POST['doc_search_by_name']))
 {
-    $contact=$_POST['contact'];
-    
-    $query="select e.timestamp as timestamp, d.Name as doc_name, p.Name as pat_name, e.disease as disease, e.medicine as medicine, e.op_req as op_req from events as e, doc_details as d, pat_details as p where e.doc_id = d.id and e.pat_id = p.id and e.pat_id=$contact";
+    $name=$_POST['input'];
+    $query="select * from doc_details where Name like '%$name%';";
 
     $result=mysqli_query($con,$query);
      echo '<!DOCTYPE html>
@@ -24,30 +23,31 @@ if(isset($_POST['search_submit']))
       <table class="table table-hover">
       <thead>
         <tr>
-          <th>TimeStamp</th>
+          <th>Doctor-ID</th>
           <th>Doctor Name</th>
-          <th>Patient Name</th>
-          <th>Disease</th>
-          <th>Medicine</th>
-          <th>OperationDone</th>
+          <th>Specialization</th>
+          <th>Hospital Name</th>
+          <th>Address</th>
+          <th>Contact</th>
         </tr>
       </thead>
       <tbody>
       ';
-  while($row=mysqli_fetch_array($result)){
-    $timestamp=$row['timestamp'];
-    $dname=$row['doc_name'];
-    $pname=$row['pat_name'];
-    $dis=$row['disease'];
-    $med=$row['medicine'];
-    $or=$row['op_req'];
+  while($row=mysqli_fetch_array($result))
+  {
+    $id=$row['id'];
+    $name=$row['Name'];
+    $spcl=$row['Specialization'];
+    $addr=$row['Address'];
+    $hname=$row['HospitalName'];
+    $con=$row['Contact'];
     echo '<tr>
-      <td>'.$timestamp.'</td>
-      <td>'.$dname.'</td>
-      <td>'.$pname.'</td>
-      <td>'.$dis.'</td>
-      <td>'.$med.'</td>
-      <td>'.$or.'</td>
+      <td>'.$id.'</td>
+      <td>'.$name.'</td>
+      <td>'.$spcl.'</td>
+      <td>'.$hname.'</td>
+      <td>'.$addr.'</td>
+      <td>'.$con.'</td>
     </tr>';
   }
 echo '</tbody></table></div> 

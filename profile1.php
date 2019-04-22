@@ -17,11 +17,7 @@
         include("func.php");
 
         $con = mysqli_connect("127.0.0.1", "root", "", "hmsdb");
-        
-        $sd = $_POST['sd'];
-        $ed = $_POST['ed'];
-        $query = "select disease as disease, count(*) as frequency from diseases where date(timestamp) between '$sd' and '$ed' group by disease";
-    
+        $query = "select * from events";
         $run = mysqli_query($con, $query);
     
         if($run == true)
@@ -30,8 +26,12 @@
             <table class="table table-striped table-dark">
                 <thead>
                   <tr>
-                    <th scope="col">Disease</th>
-                    <th scope="col">Patients</th>
+                    <th scope="col">TimeStamp</th>
+                    <th scope="col">Patient-ID</th>
+                    <th scope="col">Doctor-ID</th>
+                    <th scope="col">Diseases</th>
+                    <th scope="col">Medicines</th>
+                    <th scope="col">Operation Required</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -41,8 +41,12 @@
                         {
                             ?>
                                 <tr>
+                                    <td><?php echo $data['timestamp'] ?></td>
+                                    <td><?php echo $data['doc_id'] ?></td>
+                                    <td><?php echo $data['pat_id'] ?></td>
                                     <td><?php echo $data['disease'] ?></td>
-                                    <td><?php echo $data['frequency'] ?></td>
+                                    <td><?php echo $data['medicine'] ?></td>
+                                    <td><?php echo $data['op_req'] ?></td>
                                 </tr>
                             <?php
                         }

@@ -12,7 +12,7 @@
     #inputbtn:hover{cursor:pointer;}
   </style>
   <body style="background:url('images/bg.png'); background-size: cover;">
-    <div class="center" style="margin-top:80px">
+    <div class="center" style="margin-top:20px">
       <div class="center" align="center">
         <div class="col-md-1"></div>
         <div class="col-md-4">
@@ -33,6 +33,12 @@
                   <div class="col-md-4"><label>Password </label></div>
                   <div class="col-md-8"><input type="password" name="Password" class="form-control" placeholder="Enter Password" required/></div><br><br>
 
+                  <div class="col-md-4"><label>Specialization </label></div>
+                  <div class="col-md-8"><input type="text" name="Specialization" class="form-control" placeholder="Enter Specialization" required/></div><br><br>
+                  
+                  <div class="col-md-4"><label>Hospital </label></div>
+                  <div class="col-md-8"><input type="text" name="Hospital_name" class="form-control" placeholder="Enter Hospital Name" required/></div><br><br>
+                  
                   <div class="col-md-4"><label>Address </label></div>
                   <div class="col-md-8"><input type="text" name="Address" class="form-control" placeholder="Enter Permanent Address" required/></div><br><br>
 

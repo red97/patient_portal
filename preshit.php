@@ -20,7 +20,7 @@
 </html>
 <?php
 include("func.php");
-if(isset($_POST['entry_submit']))
+if(isset($_POST['entry_submit_1']))
 {
     
     $username = $_SESSION['username'];
@@ -38,28 +38,24 @@ if(isset($_POST['entry_submit']))
     $r = mysqli_query($con, $q);
     $row = mysqli_fetch_array($r);
     $timestamp = $row['ts'];
+    echo $timestamp;
     
     $dis_arr = explode (",", $dis);
+    echo $dis_arr;
     $n = count($dis_arr);
-    while($n > 0)
-    {
+    while($n > 0){
         $n = $n - 1;
-        $q = "insert into diseases values('$timestamp','$dis_arr[$n]')";
+        $q = "insert into disease values('$timestamp','$dis_arr[$n]')";
         $r = mysqli_query($con, $q);
-    }
-    
-    $med_arr = explode (",", $med);
-    $n1 = count($med_arr);
-    while($n1 > 0)
-    {
-        $n1 = $n1 - 1;
-        $q1 = "insert into medicines values('$timestamp','$med_arr[$n1]')";
-        $r1 = mysqli_query($con, $q1);
     }
     
     $query="insert into events values ('$timestamp','$did','$pid','$dis','$med','$or')";
     $result=mysqli_query($con,$query);
     if($result)
-    header("Location:appointment.php");
+        header("Location:preshit.php");
+    else
+        echo "Error!";
 }
+else
+    echo "Error1";
 ?>

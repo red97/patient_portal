@@ -4,44 +4,20 @@ $con=mysqli_connect("127.0.0.1","root","","hmsdb");
 if(isset($_POST['login_submit'])){
 	$username=$_POST['username'];
 	$password=$_POST['password'];
-	$query="select * from logintb where username='$username' and password='$password';";
+	$query="select * from doclogtb where username='$username' and password='$password';";
 	$result=mysqli_query($con,$query);
+    $row=mysqli_fetch_array($result);
+    $id = $row['id'];
+    echo $id;
 	if(mysqli_num_rows($result)==1)
 	{
 		$_SESSION['username']=$username;
-		header("Location:admin-panel.php");
+		header("Location:admin-login-doc.php");
 	}
 	else
 		header("Location:error.php");
 }
-if(isset($_POST['update_data']))
-{
-	$contact=$_POST['contact'];
-	$status=$_POST['status'];
-	$query="update appointmenttb set payment='$status' where contact='$contact';";
-	$result=mysqli_query($con,$query);
-	if($result)
-		header("Location:updated.php");
-}
-function display_docs()
-{
-	global $con;
-	$query="select * from doctb";
-	$result=mysqli_query($con,$query);
-	while($row=mysqli_fetch_array($result))
-	{
-		$name=$row['name'];
-		echo '<option value="'.$name.'">'.$name.'</option>';
-	}
-}
-if(isset($_POST['doc_sub']))
-{
-	$name=$_POST['name'];
-	$query="insert into doctb(name)values('$name')";
-	$result=mysqli_query($con,$query);
-	if($result)
-		header("Location:adddoc.php");
-}
+
 function display_admin_panel(){
 	echo '<!DOCTYPE html>
 <html lang="en">
@@ -60,13 +36,8 @@ function display_admin_panel(){
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-     <ul class="navbar-nav mr-auto">
-       <li class="nav-item">
-        <a class="nav-link" href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#"></a>
-      </li>
+    <ul class="navbar-nav mr-auto">
+
     </ul>
     <form class="form-inline my-2 my-lg-0" method="post" action="search.php">
       <input class="form-control mr-sm-2" type="text" placeholder="Enter Patient-ID" aria-label="Search" name="contact">
@@ -83,7 +54,17 @@ function display_admin_panel(){
  <div class="jumbotron" id="ab1"></div>
    <div class="container-fluid" style="margin-top:50px;">
     <div class="row">
-
+    
+    <div class="col-md-4">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Prescription</a>
+      <a class="list-group-item list-group-item-action" href="analyze.php">Analyze</a>
+      <a class="list-group-item list-group-item-action" href="profile1.php">All Events</a>
+      <a class="list-group-item list-group-item-action" href="doc_profile.php">Update Profile</a>
+      <a class="nav-link" href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+    </div><br>
+  </div>
+    
   <div class="col-md-8">
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
@@ -93,14 +74,15 @@ function display_admin_panel(){
               <center><h4>Prescription Details</h4></center><br>
               <form class="form-group" method="post" action="appointment.php">
                 <div class="row">
-                  <div class="col-md-4"><label>Doctor ID:</label></div>
-                  <div class="col-md-8"><input type="text" class="form-control" name="did"></div><br><br>
                   <div class="col-md-4"><label>Patient ID:</label></div>
                   <div class="col-md-8"><input type="text" class="form-control"  name="pid"></div><br><br>
+                  
                   <div class="col-md-4"><label>Disease:</label></div>
                   <div class="col-md-8"><input type="text"  class="form-control" name="dis"></div><br><br>
+                  
                   <div class="col-md-4"><label>Medicine:</label></div>
                   <div class="col-md-8"><input type="text" class="form-control"  name="med"></div><br><br>
+                  
                   <div class="col-md-4"><label>Operation Required:</label></div>
                   <div class="col-md-8">
                     <select name="or" class="form-control" >
@@ -118,6 +100,10 @@ function display_admin_panel(){
           </div>
         </div><br>
       </div>
+    
+    
+      
+      
       <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
         <div class="card">
           <div class="card-body">

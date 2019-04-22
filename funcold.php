@@ -4,12 +4,12 @@ $con=mysqli_connect("127.0.0.1","root","","hmsdb");
 if(isset($_POST['login_submit'])){
 	$username=$_POST['username'];
 	$password=$_POST['password'];
-	$query="select * from doclogtb where username='$username' and password='$password';";
+	$query="select * from logintb where username='$username' and password='$password';";
 	$result=mysqli_query($con,$query);
 	if(mysqli_num_rows($result)==1)
 	{
 		$_SESSION['username']=$username;
-		header("Location:admin-login-doc.php");
+		header("Location:admin-panel.php");
 	}
 	else
 		header("Location:error.php");
@@ -98,22 +98,30 @@ function display_admin_panel(){
         <div class="container-fluid">
           <div class="card">
             <div class="card-body">
-              <center><h4>Prescription Details</h4></center><br>
+              <center><h4>Create an appointment</h4></center><br>
               <form class="form-group" method="post" action="appointment.php">
                 <div class="row">
-                  <div class="col-md-4"><label>Doctor ID:</label></div>
-                  <div class="col-md-8"><input type="text" class="form-control" name="did"></div><br><br>
-                  <div class="col-md-4"><label>Patient ID:</label></div>
-                  <div class="col-md-8"><input type="text" class="form-control"  name="pid"></div><br><br>
-                  <div class="col-md-4"><label>Disease:</label></div>
-                  <div class="col-md-8"><input type="text"  class="form-control" name="dis"></div><br><br>
-                  <div class="col-md-4"><label>Medicine:</label></div>
-                  <div class="col-md-8"><input type="text" class="form-control"  name="med"></div><br><br>
-                  <div class="col-md-4"><label>Operation Required:</label></div>
+                  <div class="col-md-4"><label>First Name:</label></div>
+                  <div class="col-md-8"><input type="text" class="form-control" name="fname"></div><br><br>
+                  <div class="col-md-4"><label>Last Name:</label></div>
+                  <div class="col-md-8"><input type="text" class="form-control"  name="lname"></div><br><br>
+                  <div class="col-md-4"><label>Email id:</label></div>
+                  <div class="col-md-8"><input type="text"  class="form-control" name="email"></div><br><br>
+                  <div class="col-md-4"><label>Contact Number:</label></div>
+                  <div class="col-md-8"><input type="text" class="form-control"  name="contact"></div><br><br>
+                  <div class="col-md-4"><label>Doctor:</label></div>
                   <div class="col-md-8">
-                    <select name="or" class="form-control" >
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
+                   <select name="doctor" class="form-control" >
+                     <!-- <option value="Dr. Punam Shaw">Dr. Punam Shaw</option>
+                      <option value="Dr. Ashok Goyal">Dr. Ashok Goyal</option> -->
+                      <?php display_docs();?>
+                    </select>
+                  </div><br><br>
+                  <div class="col-md-4"><label>Payment:</label></div>
+                  <div class="col-md-8">
+                    <select name="payment" class="form-control" >
+                      <option value="Paid">Paid</option>
+                      <option value="Pay later">Pay later</option>
                     </select>
                   </div><br><br><br>
                   <div class="col-md-4">

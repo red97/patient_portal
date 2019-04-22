@@ -4,44 +4,17 @@ $con=mysqli_connect("127.0.0.1","root","","hmsdb");
 if(isset($_POST['login_submit'])){
 	$username=$_POST['username'];
 	$password=$_POST['password'];
-	$query="select * from doclogtb where username='$username' and password='$password';";
+	$query="select * from logintb where username='$username' and password='$password';";
 	$result=mysqli_query($con,$query);
 	if(mysqli_num_rows($result)==1)
 	{
 		$_SESSION['username']=$username;
-		header("Location:admin-login-doc.php");
+		header("Location:dashboard.php");
 	}
 	else
 		header("Location:error.php");
 }
-if(isset($_POST['update_data']))
-{
-	$contact=$_POST['contact'];
-	$status=$_POST['status'];
-	$query="update appointmenttb set payment='$status' where contact='$contact';";
-	$result=mysqli_query($con,$query);
-	if($result)
-		header("Location:updated.php");
-}
-function display_docs()
-{
-	global $con;
-	$query="select * from doctb";
-	$result=mysqli_query($con,$query);
-	while($row=mysqli_fetch_array($result))
-	{
-		$name=$row['name'];
-		echo '<option value="'.$name.'">'.$name.'</option>';
-	}
-}
-if(isset($_POST['doc_sub']))
-{
-	$name=$_POST['name'];
-	$query="insert into doctb(name)values('$name')";
-	$result=mysqli_query($con,$query);
-	if($result)
-		header("Location:adddoc.php");
-}
+
 function display_admin_panel(){
 	echo '<!DOCTYPE html>
 <html lang="en">
@@ -68,10 +41,6 @@ function display_admin_panel(){
         <a class="nav-link" href="#"></a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0" method="post" action="search.php">
-      <input class="form-control mr-sm-2" type="text" placeholder="enter contact number" aria-label="Search" name="contact">
-      <input type="submit" class="btn btn-outline-light my-2 my-sm-0 btn btn-outline-light" id="inputbtn" name="search_submit" value="Search">
-    </form>
   </div>
 </nav>
   </head>

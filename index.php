@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,7 +15,7 @@
     #inputbtn:hover{cursor:pointer;}
   </style>
   <body style="background:url('images/backgroundimg.jpeg'); background-size: cover;">
-        <div align="right" class="container-fluid" style="margin-top:10px;margin-bottom:10px;color:#34495E;">
+    <div align="right" class="container-fluid" style="margin-top:10px;margin-bottom:10px;color:#34495E;">
          <table style="width:35%">
              <tr>
                  <td><a href="doclog.php"><font size="3.5" color="black"><b>Doctor Login</b></font></a></td>
@@ -20,7 +23,7 @@
                  <td><a href="reg_pat.php"><font size="3.5" color="black"><b>Patient Register</b></font></a></td>
              </tr>
          </table>
-     </div>
+    </div>
     <div class="container-fluid" style="margin-top:10px;margin-bottom:20px;color:#34495E;">
       <div class="row">
         <div class="col-md-1"></div>
@@ -30,7 +33,7 @@
             <div class="card-body">
               <center>
               <h5>Patient Login</h5><br>
-              <form class="form-group" method="post" action="func.php">
+              <form class="form-group" method="post" action="patfunc.php">
                 <div class="row">
                   <div class="col-md-4"><label>Username: </label></div>
                   <div class="col-md-8"><input type="text" name="username" class="form-control" placeholder="enter username" required/></div><br><br>

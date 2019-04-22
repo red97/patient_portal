@@ -19,39 +19,43 @@
             <div class="card-body", align="center">
                 <center>
                 <?php
-                    $name =  $_POST['Name'];
-                    $username = $_POST['Username'];
-                    $password = $_POST['Password'];
-                    $spcl = $_POST['Specialization'];
-                    $hname = $_POST['Hospital_name'];
-                    $add = $_POST['Address'];
-                    $dob = $_POST['Date_of_Birth'];
-                    $contact = $_POST['Contact_num'];
 
-                    $con = mysqli_connect('127.0.0.1', 'root', '', 'hmsdb');
+                    session_start();
+                    $con = mysqli_connect("127.0.0.1", "root", "", "hmsdb");
 
-                    $query = "INSERT INTO `doc_details`(`Name`, `Username`, `Specialization`, `HospitalName`, `Address`, `DOB`, `Contact`) VALUES ('$name', '$username', '$spcl', '$hname', '$add', '$dob', '$contact')";
-
-                    $run1 = mysqli_query($con, $query);
-                    
-                    $query = "INSERT INTO `doclogtb`(`username`, `password`) VALUES ('$username', '$password')";
-                    
-                    $run2 = mysqli_query($con, $query);
-
-                    if($run1 == true and $run2 == true)
+                    if(isset($_POST['update_doc']))
                     {
-                        ?>
-                            <p><b><font size=10 color="black">Data Inserted Successfully</font></b></p>
-                            <a href="index.php">Click here to Login!</a>
-                        <?php
-                    }    
-                    else
-                    {
-                         ?>
-                            <p><b><font size=10 color="black">Insertion Failed!</font></b></p>
-                            <a href="regi_doc.php">Click here to try again!</a>
-                        <?php
+
+                        $username = $_SESSION['username'];
+
+                        $name = $_POST['Name'];
+                        $spcl = $_POST['Specialization'];
+                        $addr = $_POST['Address'];
+                        $hname = $_POST['Hospital'];
+                        $dob = $_POST['Date_of_Birth'];
+                        $contact = $_POST['Contact_num'];
+
+                        $query="update doc_details set Name='$name', Specialization='$spcl', HospitalName = '$hname', Address='$addr', DOB='$dob', Contact='$contact' where Username='$username';";
+                        
+                        $result=mysqli_query($con,$query);
+                        
+                        if($result == true)
+                        {
+                            ?>
+                                <p><b><font size=10 color="black">Data Updated Successfully</font></b></p>
+                                <a href="admin-login-doc.php">Return to Dashboard</a>
+                            <?php
+                        }    
+                        else
+                        {
+                             ?>
+                                <p><b><font size=10 color="black">Updation Failed!</font></b></p>
+                                <a href="doc_profile.php">Click here to try again!</a>
+                            <?php
+                        }
+
                     }
+
                 ?>
                 </center>
             </div>
