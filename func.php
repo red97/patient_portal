@@ -59,8 +59,10 @@ function display_admin_panel(){
     <div class="list-group" id="list-tab" role="tablist">
       <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Prescription</a>
       <a class="list-group-item list-group-item-action" href="analyze.php">Analyze</a>
+      <a class="list-group-item list-group-item-action" href="create_notice.php">Circulate Notice</a>
       <a class="list-group-item list-group-item-action" href="profile1.php">All Events</a>
       <a class="list-group-item list-group-item-action" href="doc_profile.php">Update Profile</a>
+      <a class="list-group-item list-group-item-action" href="func_del_doc.php">Delete Profile</a>
       <a class="nav-link" href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
     </div><br>
   </div>

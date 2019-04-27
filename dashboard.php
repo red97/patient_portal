@@ -48,6 +48,8 @@
     <div align="right" class="container-fluid" style="margin-top:10px;margin-bottom:10px;color:#34495E;">
          <table style="width:41%">
              <tr>
+                 <td><a href="view_notices.php"><font size="3.5" color="black"><b>Notices</b></font></a></td>
+                 <td><a href="func_del_pat.php"><font size="3.5" color="black"><b>Delete Profile</b></font></a></td>
                  <td><a href="pat_profile.php"><font size="3.5" color="black"><b>Update Profile</b></font></a></td>
                  <td><a href="doc_search.php"><font size="3.5" color="black"><b>Doctor Search</b></font></a></td>
                  <td><a href="logout.php"><font size="3.5" color="black"><b>Logout</b></font></a></td>

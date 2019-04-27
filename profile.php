@@ -20,7 +20,7 @@
         
         $sd = $_POST['sd'];
         $ed = $_POST['ed'];
-        $query = "select disease as disease, count(*) as frequency from diseases where date(timestamp) between '$sd' and '$ed' group by disease";
+        $query = "select disease as disease, count(*) as frequency from diseases where date(timestamp) between '$sd' and '$ed' group by disease order by frequency desc";
     
         $run = mysqli_query($con, $query);
     
