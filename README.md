@@ -5,4 +5,7 @@
 http://localhost/phpmyadmin/index.php
 ```
 4. Go to import and select the file hmsdb.sql from the folder.
-5. Now as the database and tables are ready type localhost/hms to the site.
+5. Now as the database and tables are ready type
+```
+http://localhost/hms/
+```
